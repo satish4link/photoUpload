@@ -1,14 +1,44 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      Devdactic Image Upload
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <img src="{{pathForImage(lastImage)}}" style="width: 100%" [hidden]="lastImage === null">
+  <h3 [hidden]="lastImage !== null">Please Select Image!</h3>
+  <button ion-button icon-left (click)="presentActionSheet()">
+            <ion-icon name="camera"></ion-icon>Select Image
+          </button>
+  <button ion-button type="submit" icon-left (click)="uploadImage()" [disabled]="lastImage === null">
+            <ion-icon name="cloud-upload"></ion-icon>Upload
+          </button>
+
+          <form (ngSubmit)="logForm()">
+              <ion-item>
+                <ion-label>Longitude</ion-label>
+                <ion-input type="text" [(ngModel)]="descriptions.longi" name="longitude"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label>Latitude</ion-label>
+                <ion-input type="text" [(ngModel)]="descriptions.lati" name="latitude"></ion-input>
+              </ion-item>
+              <ion-item>
+                  <ion-label>Location</ion-label>
+                  <ion-input type="text" [(ngModel)]="descriptions.location" name="location"></ion-input>
+                </ion-item>
+              <button ion-button type="submit" block>Add Todo</button>
+            </form>
+
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-buttons>
+
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
